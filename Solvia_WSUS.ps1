@@ -3,18 +3,22 @@
 # 
 # Function: Force Installing Updates
 # 
-# Date        	ver    Name                 Remarks 
+# Date        	ver     Name                 Remarks 
 #*************************************************************************
-# 24.08.2015	1.0    Christian Muggli     1st implementation
-# 12.03.2016    1.1    Christian Muggli     added WSUS Support
-# 17.11.2017    1.2    Christian Casutt     Added Logging
+# 24.08.2015	1.0     Christian Muggli    1st implementation
+# 12.03.2016    1.1     Christian Muggli    added WSUS Support
+# 17.11.2017    1.2     Christian Casutt    added Logging
+# 06.01.2019    1.3     Christian Casutt    uploaded to github
 ###############################################################################################
 
-#Common Variables
+# Common Variables
 [string] $ScriptName            = $MyInvocation.MyCommand.Name
 [string] $LogDir                = "$ENV:SystemDrive\Solvia\Logs"
 [string] $LogFilePath           = [string]::Format("{0}\{1}_{2}.log", $LogDir, "$(get-date -format `"yyyyMMdd_hhmmsstt`")",$ScriptName.Replace(".ps1",""))
 [string] $UpdateSearchFilter    = "IsInstalled=0 and Type='Software' and IsHidden=0"
+[string] $SmtpUsername          = ""
+[string] $SmtpPassword          = ""
+[string] $SmtpServer            = "mail.host.com"
 # Functions
 
 <# 
